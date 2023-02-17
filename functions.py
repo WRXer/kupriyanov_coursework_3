@@ -17,5 +17,10 @@ def main():
     operation.last_operations()    #Находим последние 5 операций
     operation.finish_list()    #Готовим к выводу
     operation.hiding_card()    #Скрываем частично номер карты
+    for w in operation.finished_list:    #Выводим
+        if 'перевод' in w['description'].lower():
+            print(f"{w['date']} {w['description']}\n{w['from']} -> {w['to']}\n{w['operationAmount']['amount']} {w['operationAmount']['currency']['name']} \n ")
+        else:
+            print(f"{w['date']} {w['description']}\n{w['to']}\n{w['operationAmount']['amount']} {w['operationAmount']['currency']['name']} \n ")
 
 
