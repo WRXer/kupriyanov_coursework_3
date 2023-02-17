@@ -9,6 +9,7 @@ class Operations():
         self.last_five_operations = None
         self.finished_list = None
 
+
     def sorted_date(self):
         """
         Функция сортировки по дате(сверху самые последние)
@@ -64,37 +65,38 @@ class Operations():
                         continue
         return self.finished_list
 
+
     def hiding_card(self):
         """
         Частичное скрытие карты и счета
         """
         for k in self.finished_list:
             if 'перевод' in k['description'].lower():
-                str = k['from']  # Скрываем номер карты отправителя
+                str = k['from']    #Скрываем номер карты отправителя
                 strlength = len(str)
                 masked = strlength - 4
                 start_str = str[:masked - 6]
                 end_str = str[masked:]
                 mask_from = start_str + "*" * 6 + end_str
-                str = k['to']  # Скрываем номер карты получателя
+                str = k['to']    #Скрываем номер карты получателя
                 strlength = len(str)
                 masked = strlength - 4
                 slimstr = str[masked:]
                 mask_to = "*" * 2 + slimstr
                 k['from'] = mask_from
                 k['to'] = mask_to
-                dt = datetime.strptime(k['date'], "%Y-%m-%dT%H:%M:%S.%f")  # Делаем сокращенным время
+                dt = datetime.strptime(k['date'], "%Y-%m-%dT%H:%M:%S.%f")    #Делаем сокращенным время
                 new_format = dt.strftime("%d.%m.%Y")
                 k['date'] = new_format
             else:
-                str = k['to']  # Скрываем номер карты получателя
+                str = k['to']    #Скрываем номер карты получателя
                 strlength = len(str)
                 masked = strlength - 4
                 start_str = str[:masked - 16]
                 end_str = str[masked:]
                 mask_to = start_str + "*" * 2 + end_str
                 k['to'] = mask_to
-                dt = datetime.strptime(k['date'], "%Y-%m-%dT%H:%M:%S.%f")  # Делаем сокращенным время
+                dt = datetime.strptime(k['date'], "%Y-%m-%dT%H:%M:%S.%f")    #Делаем сокращенным время
                 new_format = dt.strftime("%d.%m.%Y")
                 k['date'] = new_format
         return self.finished_list
