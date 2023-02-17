@@ -1,5 +1,4 @@
 import json
-from _datetime import datetime
 from operations import Operations
 
 def load_words():
@@ -17,5 +16,6 @@ def main():
     operation.sorted_date()    #Сортируем по дате
     operation.last_operations()    #Находим последние 5 операций
     operation.finish_list()    #Готовим к выводу
+    operation.hiding_card()    #Скрываем частично номер карты
 
 
