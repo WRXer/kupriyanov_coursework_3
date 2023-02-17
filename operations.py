@@ -3,7 +3,8 @@ class Operations():
         self.words = words
 
         self.sorted_to_dates = None
-        self.last_f_operations = None
+        self.last_five_operations = None
+        self.finished_list = None
 
     def sorted_date(self):
         """
@@ -42,3 +43,20 @@ class Operations():
                 self.last_five_operations[key] = value
                 count += 1
         return self.last_five_operations
+
+
+    def finish_list(self):
+        """
+        Окончательный список
+        """
+        self.finished_list = []
+        for l in self.last_five_operations.keys():
+            for w in self.words:
+                if not w:  # Ищем пустые словари
+                    continue
+                else:
+                    if l == w['id']:
+                        self.finished_list.append(w)
+                    else:
+                        continue
+        return self.finished_list
